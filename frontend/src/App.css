@@ -79,11 +79,17 @@ body {
 
 
 .game-title {
-    font-family: 'Times New Roman', serif;
-    font-weight: bold;
+    font-family: "Redaction 50", serif;
+    font-weight: 800;
     font-style: italic;
 
-    background: linear-gradient(90deg, #ffce80, #8f0c2d);
+    background: linear-gradient(
+        90deg,
+        #ffe4af 0%,
+        #e58b61 45%,
+        #a51e3c 100%
+    );
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -91,7 +97,12 @@ body {
 
     font-size: clamp(1.1rem, min(2.5vw, 4.5vh), 2.5rem);
     text-align: center;
-    filter: drop-shadow(2px 3px 0px #340814);
+
+    
+    filter:
+        drop-shadow(0 3px 2px #3e1518)
+        drop-shadow(0 6px 8px rgba(29, 9, 9, 0.65))
+        drop-shadow(0 0 10px rgba(255, 220, 160, 0.45));
 
     margin-bottom: 0;
 }
@@ -108,7 +119,7 @@ body {
 @keyframes float {
   0% {
     transform: translateY(0px);
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
   50% {
     /* Moves the text 15 pixels up at the midpoint */
@@ -118,7 +129,7 @@ body {
   }
   100% {
     transform: translateY(0px);
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -406,8 +417,9 @@ body {
     background: none;
     border: none;
 
-    color: #e8c58d;
-    font-family: 'EB Garamond', serif;
+    color: #81540b;
+    font-family: 'Redaction 50', serif;
+    font-weight: 600;
 }
 
 
@@ -420,19 +432,19 @@ body {
 
 .music-icon {
   font-size: 2rem;
-  color: #e8b86b;
+  color:#5f3c04;
 }
 
 .music-info h4 {
   margin: 0;
   font-size: 1.1rem;
-  color: #f0d9a0;
+  color: #664104;
 }
 
 .music-info p {
   margin: 2px 0 0;
   font-size: 0.85rem;
-  color: #c5b18c;
+  color: #795418;
 }
 
 
@@ -452,7 +464,7 @@ body {
 .music-progress input::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  background: #dcb26f;
+  background: #5f3c04;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -478,13 +490,13 @@ body {
 
 .music-controls button {
   background: transparent;
-  border: 1px solid #b18b52;
+  border: 1px solid#5f3c04;
   border-radius: 50%;
 
   width: 35px;
   height: 35px;
 
-  color: #e8c58d;
+  color: #5f3c04;
   font-size: 1rem;
 }
 
