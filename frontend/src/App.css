@@ -122,9 +122,9 @@ body {
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
   50% {
-    /* Moves the text 15 pixels up at the midpoint */
+    
     transform: translateY(-15px);
-    /* Expands and softens the shadow to simulate being further from the surface */
+    
     text-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
   }
   100% {
@@ -270,7 +270,7 @@ body {
     border: 3px solid #3e1f03;
     border-radius: 0;
 
-    /* stepped (notched) corners, 3px per "pixel" */
+
     clip-path: polygon(
         0 3px, 3px 3px, 3px 0,
         calc(100% - 3px) 0, calc(100% - 3px) 3px, 100% 3px,
@@ -560,7 +560,7 @@ body {
         3px 100%, 3px calc(100% - 3px), 0 calc(100% - 3px)
     );
 
-    /* flat lip under the shelf, like the buttons */
+   
     box-shadow: inset 0 -4px 0 #5e3815;
 }
 
