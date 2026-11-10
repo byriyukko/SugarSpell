@@ -158,15 +158,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(6px, 1.5vh, 15px);
     justify-content: space-between;
+    gap: clamp(8px, 1.5vh, 15px);
 
-   background-image: url('/images/leftPanelBG.svg');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: clamp(35px, 6vh, 65px) clamp(25px, 4vw, 45px);
-    padding: 35px 25px;
+    background: none;
+
+    padding: 15px 20px;
 
     min-height: 0;
     overflow: hidden;
@@ -224,17 +221,36 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(5px, 1.4vh, 12px);
+    justify-content: space-evenly;
 
-    margin-top: clamp(4px, 2vh, 20px);
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+
+    gap: clamp(5px, 1vh, 12px);
+
+    margin: 0;
+
+    background-image: url('/images/leftPanelBG.svg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 45px 12% 55px;
 }
 
 
 .dashboard-buttons button {
-    font-size: 1.4rem;
+
+    width: 100%;
+    max-width: 280px;
+    font-size: clamp(0.85rem, 1.8vw, 1.4rem);
+    padding: 8px 5px;
+
+    
     font-family: 'MedievalSharp', cursive;
     font-weight: 800;
-    padding: 10px 20px;
+    
     color: #935e08;
     -webkit-text-stroke: 0.9px #3e1f03;
     border: 3px solid #3e1f03;
