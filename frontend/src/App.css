@@ -831,3 +831,59 @@ body {
     box-shadow: inset 0 -3px 0 #d3b57c;
 }
 .player-profile img { display: block; height: 100%; width: auto; }
+
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #dcb26f #3e1f03;
+}
+
+
+::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #3e1f03;
+    border: 2px solid #2b1503;
+    box-shadow: inset 0 0 0 1px #8a5a2b;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        90deg,
+        #b9843e 0%,
+        #e6c07f 35%,
+        #dcb26f 65%,
+        #a87936 100%
+    );
+
+    border: 2px solid #3e1f03;
+    border-radius: 2px;
+
+    box-shadow:
+        inset 1px 0 0 #f0d9a0,
+        inset -1px 0 0 #8a5a22;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        90deg,
+        #d09b50,
+        #ffe0a3,
+        #e6c07f,
+        #b9843e
+    );
+
+    border-color: #8f0c2d;
+}
+
+
+::-webkit-scrollbar-corner {
+    background: #3e1f03;
+}
