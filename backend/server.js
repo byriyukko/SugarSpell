@@ -48,7 +48,7 @@ const cleanName = (v, fallback) => String(v ?? '').trim().slice(0, 30) || fallba
 app.get('/', (req, res) => res.send('SugarSpell Backend is running!'));
 app.get('/api/health', (req, res) => res.json({ success: true, message: 'Welcome to the SugarSpell API!' }));
 
-/* tags*/
+/* tags for ingre*/
 app.get('/api/ingredients', (req, res) => res.json(ingredientRows()));
 
 app.get('/api/customers', (req, res) => {
@@ -134,7 +134,7 @@ app.put('/api/saves/:id/state', (req, res) => {
   res.json({ ok: true });
 });
 
-/* ---------------- recipes ---------------- */
+/* all below is recipe*/
 function parseRecipe(body) {
   const name = cleanName(body.name, '');
   const { tag, ingredients } = body;
@@ -195,7 +195,7 @@ app.delete('/api/saves/:saveId/recipes/:recipeId', (req, res) => {
   const { changes } = db.prepare('DELETE FROM recipes WHERE id = ? AND save_id = ?')
     .run(Number(req.params.recipeId), Number(req.params.saveId));
   if (!changes) return res.status(404).json({ error: 'Recipe not found.' });
-  res.json({ ok: true }); // potions of this recipe are removed too (ON DELETE CASCADE)
+  res.json({ ok: true });
 });
 
 

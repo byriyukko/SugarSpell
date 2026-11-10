@@ -496,19 +496,6 @@ body {
 
 
 
-
-
-/**INGREDIENT SHELF IS HERE/
-.shelf-section {
-    flex: 1 1 200px;
-    min-width: 0;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* the wooden shelf: flat planks, hard stops, no blur */
 .shelf {
     --slot: clamp(40px, 8.5vh, 63px);
 
@@ -541,7 +528,7 @@ body {
     box-shadow: inset 0 -4px 0 #5e3815;
 }
 
-/* each slot is a recessed square */
+/* each square slot*/
 .shelf-slot {
     width: var(--slot);
     height: var(--slot);
@@ -581,7 +568,7 @@ body {
     background-color: rgba(143, 12, 45, 0.12);
 }
 
-/* optional: ingredients currently in the cauldron */
+/* ingredients currently in the cauldron */
 .cauldron-contents {
     display: flex;
     justify-content: center;
@@ -762,14 +749,14 @@ body {
 
 
 
-/* ---------- intro scroll ---------- */
+/* intro scroll*/
 .intro-scroll {
     width: 100%;
-    max-width: 560px;              /* make this bigger for a bigger scroll */
-    aspect-ratio: 3.2 / 1;         /* the SVG's width / height, see below */
+    max-width: 560px;             
+    aspect-ratio: 3.2 / 1;        
     margin-bottom: clamp(4px, 1vh, 10px);
 
-    /* keeps text inside the flat parchment, away from the rolled ends */
+
     padding: 9% 13% 10%;
 
     display: flex;
@@ -800,7 +787,7 @@ body {
 }
 .intro-actions button:hover { background: #e6c07f; }
 
-/* ---------- player profile ---------- */
+/* player prof */
 .player-profile {
     position: absolute; top: 10px; right: 12px; z-index: 2;
     height: clamp(60px, 16vh, 120px);

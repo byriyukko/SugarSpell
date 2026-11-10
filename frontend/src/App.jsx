@@ -18,12 +18,12 @@ import {
   SettingsPanel
 } from './Panels';
 
-/* ----------------------------- game constants ----------------------------- */
-const STIR_LOOP_MS = 2000;   // length of ONE play of stirringCauldron.gif (set to your GIF's length)
-const STIR_LOOPS = 2;        // how many times the GIF plays
-const ORDER_TIME = 60;       // seconds a customer waits
-const GOLD_CHANCE = 0.08;    // chance a wrong brew produces gold coins
-const MAX_CONTENTS = 3;      // beginner recipes use exactly 3 ingredients
+/*game constants */
+const STIR_LOOP_MS = 2000;  
+const STIR_LOOPS = 2;       
+const ORDER_TIME = 60;     
+const GOLD_CHANCE = 0.08;   
+const MAX_CONTENTS = 3;      
 const TEXT_SPEEDS = { slow: 60, normal: 35, fast: 15 };
 
 const DEFAULT_SETTINGS = {
@@ -43,35 +43,35 @@ const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const introKey = (id) => `ss_introSeen_${id}`;
 
 function App() {
-  /* ----------------------------- data from the database ----------------------------- */
+//whats in my db
   const [ingredients, setIngredients] = useState([]);
   const [customers, setCustomers] = useState([]);
-  const [save, setSave] = useState(null);       // the active save (full state)
-  const [saves, setSaves] = useState([]);       // list for the Save popup
+  const [save, setSave] = useState(null);       
+  const [saves, setSaves] = useState([]);
   const [error, setError] = useState('');
 
-  /* ----------------------------- ui state ----------------------------- */
+//ui stuff
   const [panel, setPanel] = useState(null);
   const [settings, setSettings] = useState(loadSettings);
   const [toast, setToast] = useState('');
   const [result, setResult] = useState(null);
   const [showIntro, setShowIntro] = useState(false);
 
-  /* ----------------------------- cauldron ----------------------------- */
-  const [cauldronContents, setCauldronContents] = useState([]); // ingredient ids
+//all ab cauldron
+  const [cauldronContents, setCauldronContents] = useState([]); 
   const [isOverCauldron, setIsOverCauldron] = useState(false);
   const [isStirring, setIsStirring] = useState(false);
   const [stirKey, setStirKey] = useState(0);
   const stirTimers = useRef([]);
   const stirAudio = useRef(null);
 
-  /* ----------------------------- customer ----------------------------- */
-  const [customer, setCustomer] = useState(null); // { data, phase, recipe, timeLeft, emote, emoteKey }
+//all ab customers
+  const [customer, setCustomer] = useState(null); 
   const [dialogue, setDialogue] = useState(null);
   const leaveTimer = useRef(null);
   const toastTimer = useRef(null);
 
-  /* ----------------------------- music ----------------------------- */
+//music
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -98,12 +98,12 @@ function App() {
   setShowIntro(false);
 };
 
-  /* ============================ ui sfx & music autoplay ============================ */
-  // latest SFX volume for the global click listener
+//sfx and music autoplay for wvyern
+ 
   const sfxVolumeRef = useRef(settings.sfxVolume);
   useEffect(() => { sfxVolumeRef.current = settings.sfxVolume; }, [settings.sfxVolume]);
 
-  // click sound for every button / select / checkbox (add data-sfx="none" to skip one)
+
   useEffect(() => {
     const onClick = (e) => {
       const el = e.target.closest?.('button, select, input[type="checkbox"]');
@@ -114,14 +114,14 @@ function App() {
     return () => document.removeEventListener('click', onClick, true);
   }, []);
 
-  // music autoplay (starts on the first click if Chrome blocks it)
+  
   const gameReady = Boolean(save) && ingredients.length > 0;
   useEffect(() => {
     if (!gameReady || !audioRef.current) return;
     return playWhenAllowed(audioRef.current);
   }, [gameReady]);
 
-  /* ============================ loading & saving ============================ */
+//saves n loads
   const refreshSaves = useCallback(async () => setSaves(await api.saves()), []);
 
   const persist = useCallback(async () => {
@@ -166,7 +166,7 @@ function App() {
     return () => clearInterval(t);
   }, []);
 
-  // autosave: every 30s, and shortly after gold / ingredients / potions change
+
   useEffect(() => {
     if (!settings.autosave) return;
     const t = setInterval(persist, 30000);
@@ -177,15 +177,15 @@ function App() {
     if (!settings.autosave || !save) return;
     const t = setTimeout(persist, 800);
     return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [save?.gold, save?.inventory, save?.items, settings.autosave]);
 
-  // settings
+
   useEffect(() => { localStorage.setItem('ss_settings', JSON.stringify(settings)); }, [settings]);
   useEffect(() => { if (audioRef.current) audioRef.current.volume = settings.musicVolume; }, [settings.musicVolume]);
   const updateSettings = (patch) => setSettings((s) => ({ ...s, ...patch }));
 
-  // cleanup
+
   useEffect(() => () => {
     stirTimers.current.forEach(clearTimeout);
     clearTimeout(leaveTimer.current);
@@ -206,7 +206,7 @@ function App() {
 
   
 
-  /* ============================ save popup actions ============================ */
+//pop up save actions
   const handleSaveNow = async () => { await persist(); await refreshSaves(); notify('Progress saved!'); };
 
   const handleCreateSave = async (name) => {
@@ -240,7 +240,7 @@ function App() {
     await refreshSaves();
   };
 
-  /* ============================ pantry & recipes ============================ */
+//pantry n recipe book
   const handleBuy = (ing) => {
     if (save.gold < ing.price) return;
     playSfx(SFX.coin, settings.sfxVolume);
@@ -292,7 +292,7 @@ const handleDeleteRecipe = async (recipeId) => {
   }
 };
 
-  /* ============================ cauldron ============================ */
+//cauldron
   const available = (id) => (save.inventory[id] || 0) - cauldronContents.filter((x) => x === id).length;
 
   const handleDragStart = (e, id) => {
@@ -358,7 +358,7 @@ const handleDeleteRecipe = async (recipeId) => {
     setStirKey((k) => k + 1);
     stirAudio.current = playSfx(SFX.stir, settings.sfxVolume);
 
-    // restart the GIF for every extra loop so it plays STIR_LOOPS times
+    // for the stirring cauldron gif
     stirTimers.current = [];
     for (let i = 1; i < STIR_LOOPS; i += 1) {
       stirTimers.current.push(setTimeout(() => setStirKey((k) => k + 1), i * STIR_LOOP_MS));
@@ -406,12 +406,12 @@ const handleDeleteRecipe = async (recipeId) => {
     return () => clearInterval(t);
   }, [customer?.phase]);
 
-  // timeout + mid-wait quips
+
   useEffect(() => {
     if (customer?.phase !== 'waiting') return;
     if (customer.timeLeft <= 0) finishCustomer(false);
     else if (customer.timeLeft === 40 || customer.timeLeft === 20) say(customer.data, pick(customer.data.lines.quips));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [customer?.timeLeft, customer?.phase]);
 
   const serve = (recipeId) => {
@@ -438,7 +438,7 @@ const handleDeleteRecipe = async (recipeId) => {
     notify(`+${reward} gold`);
   };
 
-  /* ============================ render ============================ */
+//actual html territory
   if (!save || !ingredients.length) {
     return <div className="game-layout"><p className="boot-msg">{error || 'Loading SugarSpell…'}</p></div>;
   }
@@ -638,7 +638,7 @@ const handleDeleteRecipe = async (recipeId) => {
         </div>
       </div>
 
-      {/* ---------------- popups ---------------- */}
+      {/* POPUPS*/}
       {panel === 'save' && (
         <Modal title="Save" onClose={closePanel}>
           <SavePanel

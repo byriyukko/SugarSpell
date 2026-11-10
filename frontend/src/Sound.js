@@ -56,7 +56,7 @@ export function playWhenAllowed(audio) {
   }
 
   audio.play().catch((err) => {
-    // only wait for a click if the browser really blocked autoplay, and we haven't been cleaned up
+    
     if (cancelled || err?.name !== 'NotAllowedError') return;
     document.addEventListener('click', start);
     document.addEventListener('keydown', start);

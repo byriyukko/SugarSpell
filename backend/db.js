@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS save_items (
 );
 `);
 
-/* ---------- seed data (re-runs safely; edit and restart to update) ---------- */
+
 
 const INGREDIENTS = [
   ['moonpetal',   'Moonpetal',    'bloom',  6, 'A purple petal that only opens under moonlight. Stolen from Rapunzel\'s garden, you might feel Mother Gothel\'s eyes on you.'],
@@ -78,7 +78,7 @@ const upsertIngredient = db.prepare(`
     description=excluded.description, icon=excluded.icon
 `);
 
-// TODO: replace these placeholders with your real customers (ids must match your image file names)
+
 const CUSTOMERS = [
   {
     id: 'mori', name: 'Mori', voice: 720,

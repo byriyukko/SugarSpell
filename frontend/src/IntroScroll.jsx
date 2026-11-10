@@ -15,13 +15,13 @@ export default function IntroScroll({ speed, blipsOn, volume, onDone }) {
   const [page, setPage] = useState(0);
   const last = page === PAGES.length - 1;
 
-  // fanfare when the scroll appears (waits for the first click if Chrome blocks it)
+  // fanfare when the scroll appears 
   useEffect(() => {
     const fanfare = new Audio(SFX.fanfare);
     fanfare.volume = volume;
     const stop = playWhenAllowed(fanfare);
     return () => { stop(); fanfare.pause(); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   const dialogue = useMemo(

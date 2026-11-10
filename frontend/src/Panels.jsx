@@ -3,7 +3,7 @@ import { TAGS, formatPlay } from './GameData';
 
 const TagBadge = ({ tag }) => <span className={`tag tag-${tag}`}>{TAGS[tag].label}</span>;
 
-/* for saving */
+/* saving */
 export function SavePanel({ save, saves, onSaveNow, onCreate, onLoad, onDelete, onRename }) {
   const [newName, setNewName] = useState('');
   const [name, setName] = useState(save.name);
@@ -83,7 +83,7 @@ export function PantryPanel({ ingredients, save, onBuy }) {
   );
 }
 
-/* for recipe book */
+/* recipe book */
 export function RecipePanel({ ingredients, save, onCreate, onUpdate, onDelete }) {
   const [tag, setTag] = useState('bloom');
   const [name, setName] = useState('');
@@ -92,7 +92,7 @@ export function RecipePanel({ ingredients, save, onCreate, onUpdate, onDelete })
   const [msg, setMsg] = useState('');
 
   const byId = Object.fromEntries(ingredients.map((i) => [i.id, i]));
-  // ingredients you own, plus any already picked (so editing an old recipe still shows its ingredients)
+  
   const options = ingredients.filter((i) => (save.inventory[i.id] || 0) > 0 || picks.includes(i.id));
 
   const resetForm = () => { setEditingId(null); setName(''); setPicks(['', '', '']); setTag('bloom'); };
