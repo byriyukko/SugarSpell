@@ -163,7 +163,7 @@ body {
     justify-content: space-between;
 
     background-image: url('/images/leftPanelBG.svg');
-    background-size: 200% 200%;
+    background-size: 250% 250%;
     background-position: center center;
     background-repeat: no-repeat;
     background-color: #1d2b29;
@@ -234,15 +234,12 @@ body {
     min-height: 0;
 
     gap: clamp(5px, 1vh, 12px);
-
     margin: 0;
 
-    background-image: url('/images/leftPanelBG.svg');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+   
+    background: none;
 
-    padding: 45px 12% 55px;
+    padding: 0 12%;
 }
 
 
