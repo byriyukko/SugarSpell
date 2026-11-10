@@ -372,7 +372,7 @@ const handleDeleteRecipe = async (recipeId) => {
   if (isStirring) cauldronImage = `/images/stirringCauldron.gif?v=${stirKey}`;
   else if (cauldronContents.length > 0) cauldronImage = '/images/filledCauldron.svg';
 
-  /* ============================ customers ============================ */
+//customers
   const say = (data, text) =>
     setDialogue({ id: `${Date.now()}-${Math.random()}`, speaker: data.name, text, pitch: data.voice });
 
