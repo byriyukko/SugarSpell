@@ -150,6 +150,7 @@ body {
 }
 
 
+
 .leftside-dashboard {
     grid-column: 1;
     grid-row: 1 / 3;
@@ -160,13 +161,17 @@ body {
     gap: clamp(6px, 1.5vh, 15px);
     justify-content: space-between;
 
-    background: linear-gradient(190deg, #344A38 15%, #8f0c2d 85%, #e8b86b 100%);
-    padding: clamp(8px, 2vh, 20px);
-    border-radius: 10px;
+    background-image: url('/images/leftPanelBG.svg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: clamp(35px, 6vh, 65px) clamp(25px, 4vw, 45px);
 
     min-height: 0;
     overflow: hidden;
 }
+
 
 
 

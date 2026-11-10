@@ -7,11 +7,18 @@ const { default: db } = await import('./db.js');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const ORIGINS = ['http://localhost:5180'];
+const ORIGINS = [
+  'http://localhost:5180',
+  'http://localhost:4173'
+];
 
-app.use(cors({ origin: ORIGINS }));
+app.use(cors({
+  origin: ORIGINS,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.use(cors({ origin: ORIGINS }));
+
 app.use(express.json());
 
 const TAGS = ['bloom', 'blight', 'might', 'wisp'];
