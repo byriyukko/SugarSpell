@@ -151,6 +151,7 @@ body {
 
 
 
+
 .leftside-dashboard {
     grid-column: 1;
     grid-row: 1 / 3;
@@ -161,12 +162,11 @@ body {
     gap: clamp(6px, 1.5vh, 15px);
     justify-content: space-between;
 
-    
-    background-color: #1d2b29;
     background-image: url('/images/leftPanelBG.svg');
-    background-size: 100% 100%;
-    background-position: center;
+    background-size: 200% 200%;
+    background-position: center center;
     background-repeat: no-repeat;
+    background-color: #1d2b29;
 
     padding: clamp(8px, 2vh, 20px);
     border-radius: 10px;
