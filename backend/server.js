@@ -27,7 +27,7 @@ const isCount = (v) => Number.isInteger(v) && v >= 0;
 const startingIngredients = 3;
 const startingGold = 50;
 
-// Database helpers
+
 async function queryAll(sql, args = []) {
   const result = await db.execute({ sql, args });
   return [...result.rows];
@@ -94,7 +94,7 @@ const isConstraintError = (e) =>
   String(e.code || '').includes('CONSTRAINT') ||
   /unique constraint|constraint failed/i.test(String(e.message || ''));
 
-/* Health */
+
 app.get('/', (req, res) => {
   res.send('SugarSpell Backend is running!');
 });
@@ -472,6 +472,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`SugarSpell server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`SugarSpell server running on port ${PORT}`);
 });
