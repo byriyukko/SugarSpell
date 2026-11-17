@@ -11,18 +11,30 @@ const PORT = process.env.PORT || 5000;
 
 
 
+
 const ORIGINS = [
   'http://localhost:5180',
   'http://localhost:4173',
-  'https://sugar-spell-bay.vercel.app',
-  'https://sugar-spell-n207rz2hp-byriyukko.vercel.app'
+  'https://sugar-spell-bay.vercel.app'
 ];
 
-app.use(cors({
-  origin: ORIGINS,
+const corsOptions = {
+  origin: (origin, callback) => {
+    const isVercelPreview =
+      /^https:\/\/sugar-spell-[a-z0-9-]+-byriyukko\.vercel\.app$/.test(origin || '');
+
+    if (!origin || ORIGINS.includes(origin) || isVercelPreview) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+};
+
+app.use(cors(corsOptions));
+
 
 
 
