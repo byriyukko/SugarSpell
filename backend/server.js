@@ -10,10 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
+
 const ORIGINS = [
   'http://localhost:5180',
   'http://localhost:4173',
-  'https://sugar-spell-bay.vercel.app'
+  'https://sugar-spell-bay.vercel.app',
+  'https://sugar-spell-n207rz2hp-byriyukko.vercel.app'
 ];
 
 app.use(cors({
@@ -21,6 +23,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 
 app.use(express.json());
