@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 const ORIGINS = [
   'http://localhost:5180',
-  'http://localhost:4173'
+  'http://localhost:4173',
+  'https://sugar-spell-bay.vercel.app'
 ];
 
 app.use(cors({
